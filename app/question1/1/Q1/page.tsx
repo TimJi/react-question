@@ -12,7 +12,7 @@ function sortUserName(user: User[]): void {
 }
 
 
-const Q1_1 = () => {
+const Question_1_Q1 = () => {
   const originalArray = [...users]
   const orderedArray = [...users]
   sortUserName(orderedArray)
@@ -26,4 +26,4 @@ const Q1_1 = () => {
   </>
 }
 
-export default Q1_1
+export default Question_1_Q1
