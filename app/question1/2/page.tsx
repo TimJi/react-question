@@ -1,4 +1,4 @@
-const Question_1_Q2 = () => {
+const Question_1_2 = () => {
   return <div className="container">
     <div className="header">5/8 外出確認表</div>
     <div className="content">
@@ -19,4 +19,4 @@ const Question_1_Q2 = () => {
   </div>
 }
 
-export default Question_1_Q2
+export default Question_1_2
