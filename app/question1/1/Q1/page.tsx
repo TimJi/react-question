@@ -18,6 +18,8 @@ const Question_1_Q1 = () => {
   sortUserName(orderedArray)
 
   return <>
+    <h1>Q1. Please follow the principle (‘firstName’ + ‘lastName’ + ‘customerID’) to sort this array and print it
+      out.</h1>
     <h2>Original Array</h2>
     <UsersList users={originalArray} />
     <br />

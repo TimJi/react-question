@@ -21,6 +21,7 @@ class SearchBox extends Component {
 
 const Question_1_6 = () => {
   return <>
+    <h1>Please write the sample code to debounce handleOnChange</h1>
     <h2>Debounce</h2>
     <SearchBox />
   </>
