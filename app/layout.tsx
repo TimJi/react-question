@@ -17,7 +17,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <body className={inter.className}>
     <div className="nav">
       {routers.map((router) => (
-        <Link href={router}>
+        <Link href={router} key={router}>
           <div>
             <button>
               {router.split('/').slice(1).join('. ')+'.'}
