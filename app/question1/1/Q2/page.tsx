@@ -25,9 +25,9 @@ const Question_1_Q2 = () => {
   sortByType(orderedArray)
 
   return <>
-    <h1>Q2. Please sort by `&apos;`profession`&apos;` to follow the principle.
-      (`&apos;`systemAnalytics`&apos;` {'>'} `&apos;`engineer`&apos;` {'>'} `&apos;`productOwner`&apos;` {'>'}
-      `&apos;`freelancer`&apos;` {'>'} `&apos;`student`&apos;`)</h1>
+    <h1>Q2. Please sort by &apos;profession&apos; to follow the principle.
+      (&apos;systemAnalytics&apos; {'>'} &apos;engineer&apos; {'>'} &apos;productOwner&apos; {'>'}
+      &apos;freelancer&apos; {'>'} &apos;student')</h1>
     <h2>Original Array</h2>
     <UsersList users={originalArray} />
     <br />
