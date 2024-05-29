@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateCell should render correctly 1`] = `
+<div>
+  <div
+    class="w-[50px] h-9 bg-white"
+  >
+    \`$
+    3
+    日\`
+  </div>
+</div>
+`;
