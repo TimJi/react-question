@@ -3,11 +3,9 @@
 exports[`DateCell should render correctly 1`] = `
 <div>
   <div
-    class="w-[50px] h-9 bg-white"
+    class="w-[50px] h-9 bg-white hover:bg-[#e6e6e6]"
   >
-    \`$
-    3
-    日\`
+    3日
   </div>
 </div>
 `;
