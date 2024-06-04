@@ -24,13 +24,13 @@ const DateRanger: React.FC<DataRangerProps> = ({ prevMonthDays, nextMonthDays, c
         </div>
         <div className="flex w-[350px] flex-wrap">
           {prevMonthDays.map((date, index) => (
-            <DataCell date={date} key={index} />
+            <DataCell date={date} key={index} isNonCurrentMonth/>
           ))}
           {currentMonthDays.map((date, index) => (
             <DataCell date={date} key={index} />
           ))}
           {nextMonthDays.map((date, index) => (
-            <DataCell date={date} key={index} />
+            <DataCell date={date} key={index} isNonCurrentMonth />
           ))}
         </div>
       </div>
