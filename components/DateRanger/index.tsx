@@ -5,16 +5,13 @@ import React, { useEffect, useState } from 'react'
 import { MonthController } from '@/components/DateRanger/MonthController'
 import dayjs from 'dayjs'
 
-interface DataRangerProps {
-  prevMonthDays: string[];
-  nextMonthDays: string[];
-  currentMonthDays: string[];
-}
-
-const DateRanger: React.FC<DataRangerProps> = ({ prevMonthDays, nextMonthDays, currentMonthDays }) => {
+const DateRanger = () => {
   const [year, setYear] = useState(dayjs().format('YYYY'))
   const [month, setMonth] = useState(dayjs().format('M'))
   const [yearMonth, setYearMonth] = useState(dayjs().format('YYYY-MM'))
+  const [prevMonthDays, setPrevMonthDays] = useState<string[]>([])
+  const [currentMonthDays, setCurrentMonthDays] = useState<string[]>([])
+  const [nextMonthDays, setNextMonthDays] = useState<string[]>([])
 
   let onMonthIncrement = () => {
     setYearMonth(dayjs(yearMonth).add(1, 'month').format('YYYY-MM'))
@@ -26,6 +23,24 @@ const DateRanger: React.FC<DataRangerProps> = ({ prevMonthDays, nextMonthDays, c
   useEffect(() => {
     setYear(dayjs(yearMonth).format('YYYY'))
     setMonth(dayjs(yearMonth).format('M'))
+    setPrevMonthDays(
+      Array.from(
+        { length: dayjs(yearMonth).startOf('month').day() },
+        (_, i) => dayjs(yearMonth).subtract(1, 'month').endOf('month').date() - i,
+      ).reverse().map((date) => date.toString()),
+    )
+    setCurrentMonthDays(
+      Array.from(
+        { length: dayjs(yearMonth).daysInMonth() },
+        (_, i) => i + 1,
+      ).map((date) => date.toString()),
+    )
+    setNextMonthDays(
+      Array.from(
+        { length: 6 - dayjs(yearMonth).endOf('month').day() },
+        (_, i) => i + 1,
+      ).map((date) => date.toString()),
+    )
   }, [yearMonth])
 
   return (
@@ -41,7 +56,7 @@ const DateRanger: React.FC<DataRangerProps> = ({ prevMonthDays, nextMonthDays, c
             <DataCell date={date} key={index} isNonCurrentMonth />
           ))}
           {currentMonthDays.map((date, index) => (
-            <DataCell date={date} key={index} />
+            <DataCell date={date} key={index} isCurrentDate={dayjs().format('D') === date} />
           ))}
           {nextMonthDays.map((date, index) => (
             <DataCell date={date} key={index} isNonCurrentMonth />
