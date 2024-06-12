@@ -12,6 +12,7 @@ const DateRanger = () => {
   const [prevMonthDays, setPrevMonthDays] = useState<string[]>([])
   const [currentMonthDays, setCurrentMonthDays] = useState<string[]>([])
   const [nextMonthDays, setNextMonthDays] = useState<string[]>([])
+  const [selectedRangeDate, setSelectedRangeDate] = useState<string[]>([])
 
   let onMonthIncrement = () => {
     setYearMonth(dayjs(yearMonth).add(1, 'month').format('YYYY-MM'))
@@ -55,9 +56,36 @@ const DateRanger = () => {
           {prevMonthDays.map((date, index) => (
             <DataCell date={date} key={index} isNonCurrentMonth />
           ))}
-          {currentMonthDays.map((date, index) => (
-            <DataCell date={date} key={index} isCurrentDate={dayjs().format('D') === date} />
-          ))}
+          {currentMonthDays.map((date, index) => {
+            let isSelected = selectedRangeDate.length === 2 ?
+              Number(selectedRangeDate[0]) <= Number(date) && Number(date) <= Number(selectedRangeDate[1])
+              : selectedRangeDate[0] === date
+            return (
+              <DataCell
+                date={date}
+                key={index}
+                isCurrentDate={dayjs().format('D') === date}
+                isSelected={isSelected}
+                onClick={() => {
+                  setSelectedRangeDate((prev) => {
+                    if (prev.length === 2) {
+                      return [date]
+                    } else if (prev.length === 1) {
+                      if (prev[0] === date) {
+                        return []
+                      } else if (Number(prev[0]) < Number(date)) {
+                        return [prev[0], date]
+                      } else {
+                        return [date, prev[0]]
+                      }
+                    } else {
+                      return [date]
+                    }
+                  })
+                }}
+              />
+            )
+          })}
           {nextMonthDays.map((date, index) => (
             <DataCell date={date} key={index} isNonCurrentMonth />
           ))}
