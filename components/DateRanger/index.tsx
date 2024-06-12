@@ -16,9 +16,11 @@ const DateRanger = () => {
 
   let onMonthIncrement = () => {
     setYearMonth(dayjs(yearMonth).add(1, 'month').format('YYYY-MM'))
+    selectedRangeDate.length && setSelectedRangeDate([])
   }
   let onMonthDecrement = () => {
     setYearMonth(dayjs(yearMonth).subtract(1, 'month').format('YYYY-MM'))
+    selectedRangeDate.length && setSelectedRangeDate([])
   }
 
   useEffect(() => {
@@ -64,23 +66,14 @@ const DateRanger = () => {
               <DataCell
                 date={date}
                 key={index}
-                isCurrentDate={dayjs().format('D') === date}
+                isCurrentDate={dayjs().format('YYYY-MM-DD') === `${yearMonth}-${date}`}
                 isSelected={isSelected}
                 onClick={() => {
                   setSelectedRangeDate((prev) => {
-                    if (prev.length === 2) {
-                      return [date]
-                    } else if (prev.length === 1) {
-                      if (prev[0] === date) {
-                        return []
-                      } else if (Number(prev[0]) < Number(date)) {
-                        return [prev[0], date]
-                      } else {
-                        return [date, prev[0]]
-                      }
-                    } else {
-                      return [date]
+                    if (prev.length === 1 && prev[0] !== date) {
+                      return Number(prev[0]) < Number(date) ? [prev[0], date] : [date, prev[0]]
                     }
+                    return [date]
                   })
                 }}
               />

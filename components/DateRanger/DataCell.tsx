@@ -18,12 +18,19 @@ const DataCell: React.FC<DataCellProps> =
    }) => {
     let NON_CURRENT_MONTH_STYLE = ' text-[#757575] cursor-not-allowed'
     let CURRENT_MONTH_STYLE = ' cursor-pointer'
+    let backgroundColor = ' bg-white'
+    if (isSelected) {
+      backgroundColor = ' bg-[#006edc]'
+    } else if (isCurrentDate) {
+      backgroundColor = ' bg-[#ffff76]'
+    } else {
+      backgroundColor = ' bg-white'
+    }
     return (
       <div
         className={'w-[50px] h-9 leading-9 text-center' +
           (isNonCurrentMonth ? NON_CURRENT_MONTH_STYLE : CURRENT_MONTH_STYLE) +
-          (isCurrentDate ? ' bg-[#ffff76]' : ' bg-white') +
-          (isSelected ? ' bg-[#006edc]' : ' hover:bg-[#e6e6e6]')}
+          backgroundColor}
         onClick={onClick}
       >
         {`${date}日`}
